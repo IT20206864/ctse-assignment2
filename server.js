@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
+const todoRoutes = require("./routes/todoRoutes");
 const app = express();
 dotenv.config();
 
@@ -27,6 +27,7 @@ connection.once("open", () => {
   console.log("Mongo DB connection success!");
 });
 
+app.use("/todo", todoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number ${PORT}`);

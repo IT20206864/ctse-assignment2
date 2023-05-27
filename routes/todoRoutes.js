@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 router.route("/create").post(async(req,res) => {
     const { title , description  } = req.body;
-    const ischecked = false;
+    const isChecked = false;
     const todoData = new Todo({
         title,
         description,
@@ -13,6 +13,7 @@ router.route("/create").post(async(req,res) => {
 
     await todoData.save().then((data) => {
         console.log(data);
+        res.send(data);
     }).catch((err) => {
         console.log(err);
     })
@@ -27,3 +28,5 @@ router.route("/").get(async(req,res) => {
         res.send(err);
     });
 });
+
+module.exports = router
