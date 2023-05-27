@@ -1,0 +1,43 @@
+To push a Docker image to Azure Container Registry (ACR), you need to follow these general steps:
+
+1. Build your Docker image: Use a Dockerfile to build your container image. Make sure you have Docker installed on your machine and navigate to the directory where your Dockerfile is located.
+
+2. Tag your Docker image: Before pushing the image to ACR, you need to tag it with the registry address. The format for the tag is `registryName.azurecr.io/repositoryName:tag`. Replace `registryName` with your ACR registry's name, `repositoryName` with the name you want to give to your repository, and `tag` with a version or tag name.
+
+   For example, if your ACR registry is named "myacr" and you want to push an image called "myimage" with the tag "v1", the tag would be: `myacr.azurecr.io/myimage:v1`.
+
+   To tag the image, open a terminal or command prompt and run the following command:
+   
+   ```
+   docker tag <imageId> registryName.azurecr.io/repositoryName:tag
+   ```
+
+   Replace `<imageId>` with the ID or name of the Docker image you built in the previous step.
+
+3. Login to Azure: Authenticate with your Azure account to access your ACR. Run the following command in the terminal or command prompt:
+
+   ```
+   az login
+   ```
+
+   This command will open a browser window for you to login with your Azure credentials.
+
+4. Login to ACR: After logging in to Azure, you need to authenticate with your ACR registry. Run the following command:
+
+   ```
+   az acr login --name registryName
+   ```
+
+   Replace `registryName` with the name of your ACR registry.
+
+5. Push the Docker image: Once you're logged in to the registry, you can push the Docker image using the following command:
+
+   ```
+   docker push registryName.azurecr.io/repositoryName:tag
+   ```
+
+   Replace `registryName`, `repositoryName`, and `tag` with the values you used in the tag command.
+
+   Docker will upload the image to your ACR repository. The process may take some time depending on the image size and your internet connection speed.
+
+That's it! Your Docker image should now be pushed to Azure Container Registry. You can check the ACR portal or use Azure CLI commands to verify the image is present in your repository.
